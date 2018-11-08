@@ -1,0 +1,2 @@
+$(".working-area > div").followPlugin();
+

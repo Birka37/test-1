@@ -35,11 +35,13 @@ AppAsset::register($this);
             'class' => 'navbar-inverse navbar-fixed-top',
         ],
     ]);
+
     echo Nav::widget([
         'options' => ['class' => 'navbar-nav navbar-right'],
         'items' => [
             ['label' => 'Main', 'url' => ['/site/index']],
             ['label' => 'User management in the DB', 'url' => ['/user/index']],
+            ['label' => 'Plugin Follow on JQuery', 'url' => ['/custom/follow']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
