@@ -13,11 +13,11 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
-        'cache' => [
-            'class' => 'yii\caching\FileCache',
+        /*'cache' => [
+            //'class' => 'yii\caching\FileCache',
             //'useMemcached' => true,
             //'keyPrefix' => 'test_'
-        ],
+        ],*/
         'log' => [
             'targets' => [
                 [

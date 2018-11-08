@@ -26,7 +26,7 @@ class UserManageService
         $this->transaction = $transaction;
     }
 
-    public function create(UserCreateForm $form): User
+    public function create(UserCreateForm $form)
     {
         $user = User::create(
             $form->username,
@@ -40,7 +40,7 @@ class UserManageService
         return $user;
     }
 
-    public function edit($id, UserEditForm $form): void
+    public function edit($id, UserEditForm $form)
     {
         $user = $this->repository->get($id);
         $user->edit(
@@ -53,13 +53,13 @@ class UserManageService
         });
     }
 
-    public function assignRole($id, $role): void
+    public function assignRole($id, $role)
     {
         $user = $this->repository->get($id);
         $this->roles->assign($user->id, $role);
     }
 
-    public function remove($id): void
+    public function remove($id)
     {
         $user = $this->repository->get($id);
         $this->repository->remove($user);

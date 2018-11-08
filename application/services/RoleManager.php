@@ -13,7 +13,7 @@ class RoleManager
         $this->manager = $manager;
     }
 
-    public function assign($userId, $name): void
+    public function assign($userId, $name)
     {
         if (!$role = $this->manager->getRole($name)) {
             throw new \DomainException('Role "' . $name . '" does not exist.');

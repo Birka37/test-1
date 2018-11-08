@@ -29,7 +29,7 @@ class User extends ActiveRecord implements AggregateRoot
     const STATUS_WAIT = 0;
     const STATUS_ACTIVE = 10;
 
-    public static function create(string $username, string $email, string $password): self
+    public static function create(string $username, string $email, string $password)
     {
         $user = new User();
         $user->username = $username;
@@ -42,7 +42,7 @@ class User extends ActiveRecord implements AggregateRoot
         return $user;
     }
 
-    public function edit(string $username, string $email): void
+    public function edit(string $username, string $email)
     {
         $this->username = $username;
         $this->email = $email;

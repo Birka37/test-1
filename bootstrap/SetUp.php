@@ -7,14 +7,13 @@ use yii\rbac\ManagerInterface;
 
 class SetUp implements BootstrapInterface
 {
-    public function bootstrap($app): void
+    public function bootstrap($app)
     {
         $container = \Yii::$container;
 
         $container->setSingleton(ManagerInterface::class, function () use ($app) {
             return $app->authManager;
         });
-
 
     }
 }

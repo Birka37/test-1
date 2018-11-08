@@ -42,7 +42,7 @@ class Identity implements IdentityInterface
         return $this->getAuthKey() === $authKey;
     }
 
-    private static function getRepository(): UserReadRepository
+    private static function getRepository()
     {
         return Yii::$container->get(UserReadRepository::class);
     }

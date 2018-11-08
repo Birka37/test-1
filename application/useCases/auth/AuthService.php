@@ -15,7 +15,7 @@ class AuthService
         $this->users = $users;
     }
 
-    public function auth(LoginForm $form): User
+    public function auth(LoginForm $form)
     {
         $user = $this->users->findByUsernameOrEmail($form->username);
         if (!$user || !$user->isActive() || !$user->validatePassword($form->password)) {
