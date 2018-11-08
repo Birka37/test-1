@@ -20,9 +20,9 @@ $config = [
             'cookieValidationKey' => '3w9OsCz9TUfGWSDr-3TJrilTeSt-uOZd',
         ],
         'cache' => [
-            'class' => 'yii\caching\DummyCache',
-            //'useMemcached' => true,
-            //'keyPrefix' => 'test_'
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true,
+            'keyPrefix' => 'test_'
         ],
 
         'user' => [
