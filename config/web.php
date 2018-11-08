@@ -6,7 +6,10 @@ $db = require __DIR__ . '/db.php';
 $config = [
     'id' => 'basic',
     'basePath' => dirname(__DIR__),
-    'bootstrap' => ['log'],
+    'bootstrap' => [
+        'log',
+        'app\bootstrap\SetUp'
+    ],
     'aliases' => [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
@@ -17,11 +20,15 @@ $config = [
             'cookieValidationKey' => '3w9OsCz9TUfGWSDr-3TJrilTeSt-uOZd',
         ],
         'cache' => [
-            'class' => 'yii\caching\FileCache',
+            'class' => 'yii\caching\MemCache',
+            'useMemcached' => true,
+            'keyPrefix' => 'test_'
         ],
+
         'user' => [
-            'identityClass' => 'app\models\User',
+            'identityClass' => 'application\auth\Identity',
             'enableAutoLogin' => true,
+            'loginUrl' => ['auth/login'],
         ],
         'errorHandler' => [
             'errorAction' => 'site/error',
@@ -42,17 +49,27 @@ $config = [
                 ],
             ],
         ],
-        'db' => $db,
-        /*
-        'urlManager' => [
-            'enablePrettyUrl' => true,
-            'showScriptName' => false,
-            'rules' => [
-            ],
+        'authManager' => [
+            'class' => 'yii\rbac\DbManager',
+            'itemTable' => '{{%auth_items}}',
+            'itemChildTable' => '{{%auth_item_children}}',
+            'assignmentTable' => '{{%auth_assignments}}',
+            'ruleTable' => '{{%auth_rules}}',
         ],
-        */
+        'db' => $db,
+        'urlManager' => require __DIR__ . '/urlManager.php',
     ],
     'params' => $params,
+    'as access' => [
+        'class' => 'yii\filters\AccessControl',
+        'except' => ['auth/login','si'],
+        'rules' => [
+            [
+                'allow' => true,
+                'roles' => ['@'],
+            ],
+        ],
+    ],
 ];
 
 if (YII_ENV_DEV) {
