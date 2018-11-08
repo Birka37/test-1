@@ -42,6 +42,7 @@ AppAsset::register($this);
             ['label' => 'Main', 'url' => ['/site/index']],
             ['label' => 'User management in the DB', 'url' => ['/user/index']],
             ['label' => 'Plugin Follow on JQuery', 'url' => ['/custom/follow']],
+            ['label' => 'Resize Image + Watermark', 'url' => ['/custom/pr-image']],
             Yii::$app->user->isGuest ? (
                 ['label' => 'Login', 'url' => ['/site/login']]
             ) : (
