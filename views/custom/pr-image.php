@@ -23,8 +23,10 @@ $this->params['breadcrumbs'][] = $this->title;
                 <?php $form = ActiveForm::begin(); ?>
                 <?= $form->field($model, 'width')->textInput() ?>
                 <?= $form->field($model, 'height')->textInput() ?>
+                <?= $form->field($model, 'marka')->textInput() ?>
                 <div class="form-group">
                     <?= Html::submitButton( 'Update', ['class' => 'btn btn-primary']) ?>
+                    <?= Html::a( 'Back',\yii\helpers\Url::to('/custom/pr-image'), ['class' => 'btn btn-default']) ?>
                 </div>
                 <?$form::end()?>
             </div>

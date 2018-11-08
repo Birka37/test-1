@@ -12,14 +12,6 @@ use yii\web\Controller;
  */
 class CustomController extends Controller
 {
-    private $service;
-
-    public function __construct($id, $module, ResizeImageWatermark $service, array $config = [])
-    {
-        $this->service = $service;
-        parent::__construct($id, $module, $config);
-    }
-
     /**
      * @return mixed
      */
@@ -36,13 +28,15 @@ class CustomController extends Controller
         $form = new ResizeImageForm();
         if($form->load(Yii::$app->request->post()) && $form->validate()){
 
-            //go...
-            $this->service->resizeImage(Yii::getAlias('@app').'/web/images/example.gif',$form->width,$form->height);
+            $image = new ResizeImageWatermark(Yii::getAlias('@app').'/web/images/example.gif');
+            $image->setText($form->marka);
+            $image->resize($form->width, $form->height);
+            $randomNameFile = uniqid('test_').'_'.microtime().'.gif';
+            $image->save(\Yii::getAlias('@app').'/web/images/temp/'.$randomNameFile);
+            $form->image = \Yii::getAlias('@web').'/images/temp/'.$randomNameFile;
         }
-        //var_dump(Yii::getAlias('@app').'/web/images/example.gif');exit;
-
         return $this->render('pr-image', [
-            'pathImage' => Yii::getAlias('@web').'/images/example.gif',
+            'pathImage' => $form->image ?: Yii::getAlias('@web').'/images/example.gif',
             'model' => $form
         ]);
     }
